@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D enemyRb;
     private Vector2 movement;
     public float enemySpeed = 5f;
+    
 
 
     // Start is called before the first frame update

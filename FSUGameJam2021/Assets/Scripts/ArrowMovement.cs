@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class ArrowMovement : MonoBehaviour
 {
+
+    public float speed = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,16 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+    }
+
+    void EnemyRanged()
+    {
         
+    }
+
+    void PlayerRanged()
+    {
+
     }
 }
