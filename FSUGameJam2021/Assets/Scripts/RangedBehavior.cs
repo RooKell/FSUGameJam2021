@@ -17,4 +17,9 @@ public class RangedBehavior : MonoBehaviour
     {
         Instantiate(spit, transform.position, spit.transform.rotation);
     }
+
+    void RangedSpit()
+    {
+        
+    }
 }
