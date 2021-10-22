@@ -9,10 +9,13 @@ public class ArrowMovement : MonoBehaviour
     private BoxCollider2D enemyCol;
     private CapsuleCollider2D arrow;
     private GameObject enemy;
+    private GameObject player;
+    public bool noFlip = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         enemy = GameObject.Find("Enemy");
         //enemyCol = enemy.GetComponent<BoxCollider2D>();
         arrow = GetComponent<CapsuleCollider2D>();
@@ -21,9 +24,23 @@ public class ArrowMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        FlipArrowDirection();
     }
 
+    void FlipArrowDirection()
+    {
+        if (player.GetComponent<PlayerMovement>().lastDir == true && noFlip == false)
+        {
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            noFlip = true;
+        }
+
+        else if (player.GetComponent<PlayerMovement>().lastDir == false)
+        {
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         Destroy(enemy);     
