@@ -29,17 +29,19 @@ public class ArrowMovement : MonoBehaviour
 
     void FlipArrowDirection()
     {
-        if (player.GetComponent<PlayerMovement>().lastDir == true && noFlip == false)
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-            noFlip = true;
-        }
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        else if (player.GetComponent<PlayerMovement>().lastDir == false)
-        {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        //if (player.GetComponent<PlayerMovement>().lastDir == true && noFlip == false)
+        //{
+        //    transform.Translate(Vector2.right * speed * Time.deltaTime);
+        //    noFlip = true;
+        //}
 
-        }
+        //else if (player.GetComponent<PlayerMovement>().lastDir == false)
+        //{
+        //    transform.Translate(Vector2.left * speed * Time.deltaTime);
+
+        //}
     }
     private void OnTriggerEnter(Collider other)
     {

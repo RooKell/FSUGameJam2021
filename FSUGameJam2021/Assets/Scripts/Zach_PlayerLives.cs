@@ -7,9 +7,9 @@ using TMPro;
 public class Zach_PlayerLives : MonoBehaviour
 {
     private Canvas canvas;
+    private GameManager gm;
 
     private TextMeshProUGUI livesText; 
-    private TextMeshProUGUI gameOverText; 
     [SerializeField] public int curLives;
     [SerializeField] public int maxLives = 3;
 
@@ -17,10 +17,10 @@ public class Zach_PlayerLives : MonoBehaviour
 
     private void Start()
     {
+        this.gameObject.SetActive(true);
         canvas = GameObject.FindWithTag("Canvas").GetComponent<Canvas>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         livesText = canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        gameOverText = canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        gameOverText.gameObject.SetActive(false);
         SetMaxLives(3);
 
     }
@@ -37,9 +37,10 @@ public class Zach_PlayerLives : MonoBehaviour
         StartCoroutine(Respawn());
         if(curLives <= 0)
         {
-            curLives = 0; 
+            curLives = 0;
             this.gameObject.SetActive(false);
-            gameOverText.gameObject.SetActive(true);
+            gm.GameOver();
+
         }
 
         livesText.text = curLives.ToString();

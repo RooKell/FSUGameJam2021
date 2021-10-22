@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                GameObject arrowClone = Instantiate(arrow, arrowSpawner.transform.position, arrowSpawner.transform.rotation);
+                GameObject arrowClone = Instantiate(arrow, this.transform.position, this.transform.rotation);
                 if (lastDir == true)
                 {
                     arrowClone.GetComponent<SpriteRenderer>().flipX = false;
