@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float verticalInput;
     public GameObject arrow;
 
+    public float cooldownTime = 2;
+    private float nextFireTime = 0; 
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +36,13 @@ public class PlayerMovement : MonoBehaviour
 
     void ShootArrow()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(Time.time > nextFireTime)
         {
-            Instantiate(arrow, transform.position, arrow.transform.rotation);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(arrow, transform.position, arrow.transform.rotation);
+                nextFireTime = Time.time + cooldownTime;
+            }
         }
     }
 }

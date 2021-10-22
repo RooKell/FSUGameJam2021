@@ -9,7 +9,6 @@ public class DestroyByBounds : MonoBehaviour
     {
         if(other.tag == "PlayerProjectile" || other.tag == "EnemyProjectile")
         {
-            Debug.Log("test");
             Destroy(other.gameObject);
         }
     }

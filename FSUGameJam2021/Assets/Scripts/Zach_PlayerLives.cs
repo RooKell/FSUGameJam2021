@@ -9,13 +9,18 @@ public class Zach_PlayerLives : MonoBehaviour
     private Canvas canvas;
 
     private TextMeshProUGUI livesText; 
-    [SerializeField] private int curLives;
-    [SerializeField] private int maxLives = 3;
+    private TextMeshProUGUI gameOverText; 
+    [SerializeField] public int curLives;
+    [SerializeField] public int maxLives = 3;
+
+    public bool invincible = false; 
 
     private void Start()
     {
         canvas = GameObject.FindWithTag("Canvas").GetComponent<Canvas>();
         livesText = canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        gameOverText = canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        gameOverText.gameObject.SetActive(false);
         SetMaxLives(3);
 
     }
@@ -26,6 +31,25 @@ public class Zach_PlayerLives : MonoBehaviour
         livesText.text = curLives.ToString();
     }
 
+    public void LoseLife()
+    {
+        curLives--; 
+        StartCoroutine(Respawn());
+        if(curLives <= 0)
+        {
+            curLives = 0; 
+            this.gameObject.SetActive(false);
+            gameOverText.gameObject.SetActive(true);
+        }
 
+        livesText.text = curLives.ToString();
+    }
+
+    IEnumerator Respawn()
+    {
+        invincible = true; 
+        yield return new WaitForSeconds(2f);
+        invincible = false; 
+    }
 
 }
