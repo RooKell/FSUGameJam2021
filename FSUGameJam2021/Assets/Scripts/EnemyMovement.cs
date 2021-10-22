@@ -6,9 +6,11 @@ public class EnemyMovement : MonoBehaviour
 {
 
     private GameObject player;
+    private GameObject arrow;
     private Rigidbody2D enemyRb;
     private Vector2 movement;
     public float enemySpeed = 5f;
+    
     
 
 
@@ -37,5 +39,13 @@ public class EnemyMovement : MonoBehaviour
     void EnemyMove(Vector2 direction)
     {
         enemyRb.MovePosition((Vector2)transform.position + (direction * enemySpeed * Time.deltaTime));
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "PlayerProjectile")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

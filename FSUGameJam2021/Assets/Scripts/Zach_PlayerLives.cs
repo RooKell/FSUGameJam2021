@@ -26,6 +26,4 @@ public class Zach_PlayerLives : MonoBehaviour
         livesText.text = curLives.ToString();
     }
 
-
-
 }
